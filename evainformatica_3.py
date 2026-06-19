@@ -49,43 +49,36 @@ def registro_muestra():
 #-------------------
 def gestion_muestras():
 
-    if len(muestras_lab) == -1:
-        print("Lista de muestra vacia, intente mas tarde.")
 
     muestra_busqueda = input(str("Registre numero de muestra a buscar: ")).strip().upper()
 
     for x in muestras_lab:
         if x == muestra_busqueda:
-            print(f"{x} encontrado en lista")
+            print (x), "Se encuentra en el sistema, a continuacion vera sus opciones."
 
-            print("""-- Opciones de muestra -- """)
-            print("1. Modificar muestra")
-            print("2. Eliminar Muestra")
-            input_submuestra = int(input("Ingrese Opcion: "))
-        
-            if input_submuestra == 1:
-                muestras_lab.index(muestra_busqueda)
-                return
-        
-            elif input_submuestra == 2:
-                return
+            print("""
+            ---- Seccion de gestion ----
+                  
+             1. Modificar Estado de Muestra
+             2. Eliminar  Muestra
 
-            else:
-                print("No encontrado, intente nuevamente.")
+                  """)
+            submuestra_input=int(input("Ingrese opcion: "))
+    
+            if submuestra_input == 1:
+
+                nuevo_estadomuestra = str(input("Ingrese nuevo estado: "))
+                muestras_lab.insert[muestras_lab.index(muestra_busqueda)[2]]
                 return
             
-    #------------------------
-    #Modificacion de muestras
-    #------------------------
-            print("""-- Opciones de muestra -- """)
-            print("1. Modificar muestra")
-            print("2. Eliminar Muestra")
-        input_submuestra = int(input("Ingrese Opcion: "))
+            elif submuestra_input == 2:
+                muestras_lab.remove(muestras_lab.index(muestra_busqueda))
+                return
+            
+            else:
+                print("Opcion no valida.")
         
-        if input_submuestra == 1:
-            muestras_lab.index(muestra_busqueda)
-
-        return
+   
 
 #Menu
 def menu_sistema():
