@@ -2,16 +2,26 @@
 
 muestras_lab=[]
 
+#------------------------------------------------------------
 #Definiciones de opciones disponibles en el menu del sistema
+#------------------------------------------------------------
 
+#-------------------
 #Registro de muestra
+#-------------------
 def registro_muestra():
 
-    num_muestra = str(input("Registre numero de muestra: ")).strip().upper()
-    nombre_paciente = str(input("Registre nombre del paciente: ")).upper()
-    temp_muestra = int(input("Registre temperatura de muestra (en C*): "))
+    try:
+        num_muestra = str(input("Registre numero de muestra: ")).strip().upper()
+        nombre_paciente = str(input("Registre nombre del paciente: ")).upper()
+        temp_muestra = int(input("Registre temperatura de muestra (en C*): "))
 
+    except ValueError:
+        print("Error de valor!")
+        return
+    #----------------------
     #Logica de temperaturas
+    #----------------------
 
     if temp_muestra < 2 or temp_muestra > 8:
         print("Temperatura fuera de rango establecido por codigo")
@@ -31,38 +41,52 @@ def registro_muestra():
     muestras_lab.append(idmuestra)
     return
 
-#Busqueda y gestion de muestras
+#-------------------
+#Busqueda de muestras
+#-------------------
+
+#Gestion de muestras
+#-------------------
 def gestion_muestras():
+
+    if len(muestras_lab) == -1:
+        print("Lista de muestra vacia, intente mas tarde.")
 
     muestra_busqueda = input(str("Registre numero de muestra a buscar: ")).strip().upper()
 
     for x in muestras_lab:
-        if len(muestras_lab) == 0:
-            print("No hay muestras en el sistema.")
+        if x == muestra_busqueda:
+            print(f"{x} encontrado en lista")
 
-        else:
-            print (muestras_lab), "Se encuentra en el sistema, a continuacion vera sus opciones."
+            print("""-- Opciones de muestra -- """)
+            print("1. Modificar muestra")
+            print("2. Eliminar Muestra")
+            input_submuestra = int(input("Ingrese Opcion: "))
+        
+            if input_submuestra == 1:
+                muestras_lab.index(muestra_busqueda)
+                return
+        
+            elif input_submuestra == 2:
+                return
 
-            print("""
-            ---- Seccion de gestion ----
-                  
-             1. Modificar Estado de Muestra
-             2. Eliminar  Muestra
-
-                  """)
-            submuestra_input=int(input("Ingrese opcion: "))
-    
-            if submuestra_input == 1:
-
-                nuevo_estadomuestra = str(input("Ingrese nuevo estado: "))
-                muestras_lab.insert[2]
-
-            elif submuestra_input == 2:
-                muestras_lab.remove(muestra_busqueda)
             else:
-                print("Opcion no valida.")
-    
-    return
+                print("No encontrado, intente nuevamente.")
+                return
+            
+    #------------------------
+    #Modificacion de muestras
+    #------------------------
+            print("""-- Opciones de muestra -- """)
+            print("1. Modificar muestra")
+            print("2. Eliminar Muestra")
+        input_submuestra = int(input("Ingrese Opcion: "))
+        
+        if input_submuestra == 1:
+            muestras_lab.index(muestra_busqueda)
+
+        return
+
 #Menu
 def menu_sistema():
     
@@ -92,3 +116,7 @@ while True:
 
     elif menu_input == "3":
         break
+
+    else:
+        print("Opcion no valida intente nuevamuente")
+        
